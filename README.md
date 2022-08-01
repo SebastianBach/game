@@ -30,12 +30,24 @@ The players take turns rolling the dice (D6) and have a choice. Either they move
 
 ```"drag"```: I move forward. But when I see that a player is about to win, I pull him back down.
 
+
+# Setup
+
+- Install Python
+- Install dependencies via ```pip install -r requirements.txt```
+
 # Run
 
-Run the game via:
+Run the simulation via:
 
 ```
-python game.py MODE SEED PLAYER_1 PLAYER_2 PLAYER_3 ...
+python simulation.py MODE SEED PLAYER_1 PLAYER_2 PLAYER_3 ...
+```
+
+Run the simulation with UI via:
+
+```
+python simulation_ui.py MODE SEED PLAYER_1 PLAYER_2 PLAYER_3 ...
 ```
 
 - *MODE*: The game mode. *show* will run the game with a delay, *run* will run the game without delay.
@@ -45,7 +57,8 @@ python game.py MODE SEED PLAYER_1 PLAYER_2 PLAYER_3 ...
 Example:
 
 ```
-python game.py show 123 run second waiting
+python simulation.py show 123 run second waiting
+python simulation_ui.py show 123 run second waiting
 ``` 
 
 # Test

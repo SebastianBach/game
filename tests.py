@@ -1,8 +1,9 @@
 import string
 import unittest
-from engine import game_engine
-from move import my_move
-from strategies import strategies
+from game.engine import game_engine
+from game.move import my_move
+from game.strategies import strategies
+from ui.args import *
 import random
 
 
@@ -120,6 +121,46 @@ class BasicEngineTests(unittest.TestCase):
         res = game_engine(players, 123, 0.0)
         self.assertEqual(res, [32, 19, 11])
 
+
+class ArgsParsterTests(unittest.TestCase):
+
+    def test_args_ok(self):
+
+        args = ["app.exe", "show", "123", "run", "run"]
+        res = args_ok(args, strategies)
+        self.assertTrue(res)
+
+    def test_args_bad_cnt(self):
+
+        args = ["app.exe", "show", "123", "run"]
+        res = args_ok(args, strategies)
+        self.assertFalse(res)
+
+    def test_args_bad_mode(self):
+
+        args = ["app.exe", "something", "123", "run", "run"]
+        res = args_ok(args, strategies)
+        self.assertFalse(res)
+
+    def test_args_bad_seed(self):
+
+        args = ["app.exe", "show", "seed", "run", "run"]
+        res = args_ok(args, strategies)
+        self.assertFalse(res)
+
+    def test_args_bad_player(self):
+
+        args = ["app.exe", "show", "123", "run", "_BAD_"]
+        res = args_ok(args, strategies)
+        self.assertFalse(res)
+
+    def test_args_parse(self):
+
+        args = ["app.exe", "show", "123", "run", "big"]
+        seed, players, delay = parse_args(args)
+        self.assertEqual(seed,123)
+        self.assertEqual(players,["run", "big"])
+        self.assertEqual(delay,0.7)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,6 @@
-from move import my_move
-from utils import best_player
-from utils import random_player
+from game.move import my_move
+from game.utils import best_player
+from game.utils import random_player
 
 import random
 
